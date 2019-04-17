@@ -55,6 +55,19 @@ public class MainActivity<target> extends AppCompatActivity {
                 DodajWpis.class);
         startActivityForResult(intencja, 1);
     }
+
+
+    protected void onActivityResult(
+            int requestCode, int resultCode, Intent data)
+    {
+        if(requestCode==1 && resultCode==RESULT_OK)
+        {
+            Bundle extras = data.getExtras();
+            String nowy = (String)extras.get("wpis");
+            target.add(nowy);
+            adapter.notifyDataSetChanged();
+        }
+    }
 }
 
 
