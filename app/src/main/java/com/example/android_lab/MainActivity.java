@@ -1,7 +1,11 @@
 package com.example.android_lab;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -15,9 +19,9 @@ public class MainActivity<target> extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] values = new String[] { "Pies",
+        String[] values = new String[]{"Pies",
                 "Kot", "Koń", "Gołąb", "Kruk", "Dzik", "Karp",
-                "Osioł", "Chomik", "Mysz", "Jeż", "Kraluch" };
+                "Osioł", "Chomik", "Mysz", "Jeż", "Kraluch"};
 
         this.target = new ArrayList<String>();
         this.target.addAll(Arrays.asList(values));
@@ -27,7 +31,7 @@ public class MainActivity<target> extends AppCompatActivity {
 
 
         ListView listview = (ListView) findViewById(
-                R.id.list );
+                R.id.list);
         listview.setAdapter(this.adapter);
 
 
@@ -36,9 +40,22 @@ public class MainActivity<target> extends AppCompatActivity {
     private ArrayList<String> target;
     private ArrayAdapter adapter;
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
 
 
+
+        }
+
+    public void nowyWpis(MenuItem mi)
+    {
+        Intent intencja = new Intent(this,
+                DodajWpis.class);
+        startActivityForResult(intencja, 1);
     }
+}
 
 
 
